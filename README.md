@@ -87,7 +87,7 @@ def Samarati(data,Lattice,LM,HV): # Hierarchy Vector
  [3] LeFevre, K., et al. “Mondrian Multidimensional K-Anonymity.” 22nd International Conference on Data Engineering (ICDE’06), 2006, pp. 25–25.
  
 ## Support
- Since this is the first time I learned how to tackle with literally large amount of data, I did not consider how to improve the performance of the code. The code I provide is quite slow. I would be very much appreciated if you can make improvement on the code.
+ Since this is the first time I learned how to tackle with literally large amount of data, I did not consider how to improve the performance of the code. The code I provide is quite slow. I would be very much appreciated if you can make improvements on the code.
  
  Contribution via [Pull Requests](https://github.com/Hjh233/K-anonymity/pulls) is appreciated!
  

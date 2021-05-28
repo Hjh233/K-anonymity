@@ -9,7 +9,6 @@ We give the definition of k-anonymity as follows:
  if each unique tuple in the projection of ![](http://latex.codecogs.com/svg.latex? D^*)
  on ![](http://latex.codecogs.com/svg.latex?Q_1), ![](http://latex.codecogs.com/svg.latex?\dots), ![](http://latex.codecogs.com/svg.latex?Q_d)
  occurs at least k times.
-![](http://latex.codecogs.com/svg.latex? D^*)
-![](http://latex.codecogs.com/svg.latex?Q_1), ![](http://latex.codecogs.com/svg.latex?\dots), ![](http://latex.codecogs.com/svg.latex?Q_d)
+![](http://latex.codecogs.com/svg.latex? D^{*})
 
 

@@ -10,12 +10,14 @@ We give the definition of k-anonymity as follows:
  if each unique tuple in the projection of ![](http://latex.codecogs.com/svg.latex?D^*)
  on ![](http://latex.codecogs.com/svg.latex?Q_1), ![](http://latex.codecogs.com/svg.latex?\dots), ![](http://latex.codecogs.com/svg.latex?Q_d)
  occurs at least k times.  
- To implement _k-anonymity_, we have the following two algorithms proposed by Samarati, Mondrian. 
+ 
+ To implement _k-anonymity_, we have the following two algorithms proposed by Samarati[2], Mondrian[3]. 
  
  ## Data
  There are 32561 rows in the original data which may contain missing items. After cleaning, there are 30162 rows in total.
-
  
+ You can find original source via https://archive.ics.uci.edu/ml/datasets/adult.
+
  ## Algorithm
  ### Samarati
  For Algorithm 1 (Samarati) which deals with multiple categotical attributes, basic idea can be illustrated as follows:
@@ -75,4 +77,17 @@ def Samarati(data,Lattice,LM,HV): # Hierarchy Vector
 
     ReleaseVector = HV[MinIndex] # NEW!
 
-    return ReleaseVector
+    return ReleaseVector 
+ ```
+    
+   
+## More Information
+ [1] Sweeney, Latanya. “Datafly: A System for Providing Anonymity in Medical Data.” Proceedings of the IFIP TC11 WG11.3 Eleventh International Conference on Database Securty XI: Status and Prospects, 1997, pp. 356–381.  
+ [2] Samarati, P. “Protecting Respondents Identities in Microdata Release.” IEEE Transactions on Knowledge and Data Engineering, vol. 13, no. 6, 2001, pp. 1010–1027.  
+ [3] LeFevre, K., et al. “Mondrian Multidimensional K-Anonymity.” 22nd International Conference on Data Engineering (ICDE’06), 2006, pp. 25–25.
+ 
+## Support
+ Since this is the first time I learned how to tackle with literally large amount of data, I did not consider how to improve the performance of the code. The code I provide is quite slow. I would be very much appreciated if you can make improvement on the code.
+ 
+ Contribution via [Pull Requests](https://github.com/Hjh233/K-anonymity/pulls) is appreciated!
+ 

@@ -3,5 +3,5 @@ K-anonymity is a property possessed by certain anonymized data. The concept of k
 ## Introduction
 Sweeney demonstrated that releasing a data table by simply removing identifiers can seriously breach the privacy of individuals whose data are in the table. By combinig a public voter registration list and a released medical database of health insurance information, she was able to identify the medical record of the governor of Massachusetts.  
 We give the definition of k-anonymity as follows:  
-**_k-Anonymity_** : Given a set of QI attributes Q_1, ..., Q_d, release candidate D^* is said to be k-anonymous with respect to Q_1, \dots, Q_d if each unique tuple in the projection of D^* on Q_1, ..., Q_d occurs at least k times.
+**_k-Anonymity_** : Given a set of QI attributes Q_1, ..., Q_d, release candidate D^* is said to be k-anonymous with respect to Q_1, ..., Q_d if each unique tuple in the projection of D^* on Q_1, ..., Q_d occurs at least k times.
 ![](http://latex.codecogs.com/svg.latex?\frac{\mathbf{x}^2}{y})

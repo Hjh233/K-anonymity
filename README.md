@@ -1,4 +1,5 @@
 # K-anonymity
 K-anonymity is a property possessed by certain anonymized data. The concept of k-anonymity was first introduced by Latanya Sweeney and Pierangela Samarati in a paper published in 1998 as an attempt to solve the problem: "Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful." A release of data is said to have the k-anonymity property if the information for each person contained in the release cannot be distinguished from at least k - 1 individuals whose information also appear in the release.\footnote{Quote from Wikipedia} Here we implement k-anonymity via two algorithms: Samarati and Mondian and have further discussions about what difference does it make with different parameters, e.g., k and MaxSup.
 ## Introduction
-       \it{\textbf{(k-Anonymity)}} Given a set of QI attributes $Q_1, \dots, Q_d$, release candidate $D^*$ is said to be k-anonymous with respect to $Q_1, \dots, Q_d$ if each unique tuple in the projection of $D^*$ on $Q_1, \dots, Q_d$ occurs at least k times.
+![](http://latex.codecogs.com/gif.latex?\\sigma=\sqrt{\frac{1}{n}{\sum_{k=1}^n(x_i-\bar{x})^2}})
+

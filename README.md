@@ -20,7 +20,7 @@ We give the definition of k-anonymity as follows:
 Consequently, we use bisection method to complete the process: For a lattice with its maximun height h, we determine whether the nodes with height h/2 is k-anonymous. If so, we proceed with the nodes with height h/4, otherwise we check the nodes with height 3h/4. We repeat the above process until the layer with minimun height satisfying k-anonymity is found.
 
 We give specific generalizaiton hierarchy according to the generalization hierarchy given in adult_.txt as below.
-![image](https://github.com/Hjh233/K-anonymity/blob/main/Image/2.PNG)
+![image](https://github.com/Hjh233/K-anonymity/blob/main/Image/1.PNG)
 
 
 

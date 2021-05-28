@@ -21,6 +21,19 @@ Consequently, we use bisection method to complete the process: For a lattice wit
 
 We give specific generalizaiton hierarchy according to the generalization hierarchy given in adult_.txt as below.
 ![image](https://github.com/Hjh233/K-anonymity/blob/main/Image/1.PNG)
+![image](https://github.com/Hjh233/K-anonymity/blob/main/Image/2.PNG)
+
+### Mondrian
+For algorithm 2 (Mondrian) which deals with multiple numerical attributes, basic idea can be illustrated as folllows:
+1. Choose one attribute for every partition, you can choose the attribute with maximum range or just randomly pick one.
+2. Find the median of the selected attribute and split the partition. There are 2 ways of doing partitioning, strict partitioning and relax partitioning respectively.
+   * Say we set k = 2, and we have a dataset = [1,2,3,3,4,5]
+   * For strict partitioning, we have the split dataset as [1,2,3,3],[4,5]. That is, we place all the median to one bucket.
+   * For relax partitioning, we have the split dataset as [1,2,3],[3,4,5]. That is, we try to make the partitioned dataset as even as possible.
+3. Repeat the process above until every cluster is k-anonymous and no more partitioning is allowed.  
+
+There are still some details to be illustrated: After partitioning the maximum cluster, we need to judge whether the partitioned ones are k-anonymous or not. If so, we proceed. If not, we set the table the way it used to be before partitioning and tag the maximum cluster to show that the cluster cannot be partitioned.  
+You can find quite detailed information about MOndrian from https://github.com/qiyuangong/Mondrian
 
 
 

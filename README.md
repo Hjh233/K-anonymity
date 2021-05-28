@@ -1,7 +1,8 @@
 # K-anonymity
 K-anonymity is a property possessed by certain anonymized data. The concept of k-anonymity was first introduced by Latanya Sweeney and Pierangela Samarati in a paper published in 1998 as an attempt to solve the problem: "Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful." A release of data is said to have the k-anonymity property if the information for each person contained in the release cannot be distinguished from at least k - 1 individuals whose information also appear in the release(Cited from [Wikipedia](https://en.wikipedia.org/wiki/K-anonymity)). Here we implement k-anonymity via two algorithms: Samarati and Mondian and have further discussions about what difference does it make with different parameters, e.g., k and MaxSup.
 ## Introduction
-Sweeney demonstrated that releasing a data table by simply removing identifiers can seriously breach the privacy of individuals whose data are in the table. By combinig a public voter registration list and a released medical database of health insurance information, she was able to identify the medical record of the governor of Massachusetts.  
+Sweeney[1] demonstrated that releasing a data table by simply removing identifiers can seriously breach the privacy of individuals whose data are in the table. By combinig a public voter registration list and a released medical database of health insurance information, she was able to identify the medical record of the governor of Massachusetts. This kind of attack is called _linking attack_. To protect data from linking attacks, Samaratia and Sweeney proposed _k-anonymity_ [1,2]. 
+
 We give the definition of k-anonymity as follows:
 
 **Definition 1: _k-Anonymity_** : Given a set of QI attributes ![](http://latex.codecogs.com/svg.latex?Q_1), ![](http://latex.codecogs.com/svg.latex?\dots), ![](http://latex.codecogs.com/svg.latex?Q_d)
@@ -11,6 +12,11 @@ We give the definition of k-anonymity as follows:
  occurs at least k times.  
  To implement _k-anonymity_, we have the following two algorithms proposed by Samarati, Mondrian. 
  
+ ## Data
+ There are 32561 rows in the original data which may contain missing items. After cleaning, there are 30162 rows in total.
+
+ 
+ ## Algorithm
  ### Samarati
  For Algorithm 1 (Samarati) which deals with multiple categotical attributes, basic idea can be illustrated as follows:
  1. Define the hierarchy of generealization and Construct a Lattice.
@@ -33,7 +39,40 @@ For algorithm 2 (Mondrian) which deals with multiple numerical attributes, basic
 3. Repeat the process above until every cluster is k-anonymous and no more partitioning is allowed.  
 
 There are still some details to be illustrated: After partitioning the maximum cluster, we need to judge whether the partitioned ones are k-anonymous or not. If so, we proceed. If not, we set the table the way it used to be before partitioning and tag the maximum cluster to show that the cluster cannot be partitioned.  
-You can find quite detailed information about MOndrian from https://github.com/qiyuangong/Mondrian
 
+You can find quite detailed information about Mondrian from https://github.com/qiyuangong/Mondrian
 
+## Utility
+We now discuss how to use loss metric to measure the utility of data after sanitization (here we use generlization). Normally, we would like the utility of sanitized data to be as big as possible so long as the release data meets relevant privacy criterion.  
 
+We give the definition of Loss Metric as follows:
+
+**Definition 2: _Loss metric_** : LM is defined in terms of a normalized loss for each attribute of every tuple. For a tuple t and categorical attribute A, suppose the value of t[A] has been generalized to x. Letting |A| represent the size of the domain of attribute A and letting M represent the number of values in this domain that could have been generalized to x, then the loss for t[A] is (M − 1)/(|A| − 1). The loss for attribute A is defined as the average of the loss t[A] for all tuples t. The LM for the entire data set is defined as the sum of the losses for each attribute.
+
+Samarati guarantees that we find the final hierarchy with its height minimized. Under such constraint, however, there may still be multiple solutions. Now we seek to find the 'optimal' output with its utility maximized, that is, its loss metric minimized (here we consider it a proper method to evaluate the output). We give our way to find the optimal output as follows:
+
+We initialize 2 lists: HierarchyVector = [], LMHV = [] , to record the hierarchy vectors that can be used to generalize the data satisfying k-anonymity and their loss metric respectively. We only need to find the index of minimum in LMHV, and then we can find the hierarchy that minimize the loss metric simply by getting the value of HierarchyVector[index]. Relevent code is shown as below.
+
+```
+def Samarati(data,Lattice,LM,HV): # Hierarchy Vector
+    low = 0
+    high = 8
+    while (low < high):
+        mid = int((low + high)/2)
+        for VECTOR in Lattice[mid]:
+            GTC = Generalize(data, VECTOR)  # Generalized table candidate
+            if Releasable(Cluster(GTC)) == 0:
+                low = mid + 1
+            else:
+                ReleaseVector = copy.deepcopy(VECTOR)
+                HV.append(ReleaseVector) # NEW!
+                SupNum = Cluster(data) # NEW!
+                LM.append(LossMetric(ReleaseVector, SupNum)) # NEW!
+                high = mid
+
+    Min = min(LM) # NEW!
+    MinIndex = LM.index(Min) # NEW!
+
+    ReleaseVector = HV[MinIndex] # NEW!
+
+    return ReleaseVector

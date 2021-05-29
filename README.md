@@ -1,7 +1,7 @@
 # K-anonymity
 K-anonymity is a property possessed by certain anonymized data. The concept of k-anonymity was first introduced by Latanya Sweeney and Pierangela Samarati in a paper published in 1998 as an attempt to solve the problem: "Given person-specific field-structured data, produce a release of the data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful." A release of data is said to have the k-anonymity property if the information for each person contained in the release cannot be distinguished from at least k - 1 individuals whose information also appear in the release(Cited from [Wikipedia](https://en.wikipedia.org/wiki/K-anonymity)). Here we implement k-anonymity via two algorithms: Samarati and Mondian and have further discussions about what difference does it make with different parameters, e.g., k and MaxSup.
 ## Introduction
-Sweeney[1] demonstrated that releasing a data table by simply removing identifiers can seriously breach the privacy of individuals whose data are in the table. By combinig a public voter registration list and a released medical database of health insurance information, she was able to identify the medical record of the governor of Massachusetts. This kind of attack is called _linking attack_. To protect data from linking attacks, Samaratia and Sweeney proposed _k-anonymity_ [1,2]. 
+Sweeney[1] demonstrated that releasing a data table by simply removing identifiers can seriously breach the privacy of individuals whose data are in the table. By combinig a public voter registration list and a released medical database of health insurance information, she was able to identify the medical record of the governor of Massachusetts. This kind of attack is called _linking attack_. To protect data from linking attacks, Samarati and Sweeney proposed _k-anonymity_ [1,2]. 
 
 We give the definition of k-anonymity as follows:
 
@@ -87,7 +87,7 @@ def Samarati(data,Lattice,LM,HV): # Hierarchy Vector
  [3] LeFevre, K., et al. “Mondrian Multidimensional K-Anonymity.” 22nd International Conference on Data Engineering (ICDE’06), 2006, pp. 25–25.
  
 ## Support
- Since this is the first time I learned how to tackle with literally large amount of data, I did not consider how to improve the performance of the code. The code I provide is quite slow. I would be very much appreciated if you can make improvements on the code.
+ Since this is the first time I learned how to deal with literally large amount of data, I did not consider how to improve the performance of the code. The code I provide is quite slow. I would be very much appreciated if you can make improvements on the code.
  
  Contribution via [Pull Requests](https://github.com/Hjh233/K-anonymity/pulls) is greatly appreciated!
  
